@@ -1,3 +1,4 @@
+import re
 intents = {
     # Basic conversation
     "greeting": ["hello", "hey", "good morning","hi", "good evening"],
@@ -106,33 +107,60 @@ responses = {
 
     "default": "Sorry, I couldn't understand. Please consult a medical professional."
 }
+# --------------------
+# TEXT NORMALIZATION
+# --------------------
 def normalize(text):
+    text = text.lower()
+
     replacements = {
         "paining": "pain",
-        "hurting": "pain",
-        "hurt": "pain",
-        "aching": "pain",
-        "ache": "pain"
+        "aching": "ache",
+        "hurting": "hurt",
+        "hurts": "hurt",
+        "painful": "pain"
     }
+
     for k, v in replacements.items():
         text = text.replace(k, v)
+
+    # remove special characters
+    text = re.sub(r"[^a-zA-Z\s]", "", text)
     return text
 
+# --------------------
+# INTENT PREDICTION
+# --------------------
 def predict_intent(user_input):
-    user_input = normalize(user_input.lower())
+    user_input = normalize(user_input)
     words = user_input.split()
 
+    best_match = None
+    max_score = 0
+
     for intent, keywords in intents.items():
+        score = 0
         for keyword in keywords:
             keyword_words = keyword.split()
 
+            # Full phrase match
+            if keyword in user_input:
+                score += 3
 
-            if all(word in words for word in keyword_words):
-                return intent
+            # Partial word match
+            for w in keyword_words:
+                if w in words:
+                    score += 1
 
-    return "default"
+        if score > max_score:
+            max_score = score
+            best_match = intent
 
+    return best_match if best_match else "default"
 
+# --------------------
+# CHATBOT RESPONSE
+# --------------------
 def chatbot_response(user_input):
     intent = predict_intent(user_input)
     return responses.get(intent, responses["default"])

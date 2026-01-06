@@ -6,35 +6,23 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
+    <div class="container">
+    <h2>AI-Based Healthcare Assistant</h2>
 
-<div class="container">
-    <h1>AI-Based Healthcare Assistance Chatbot</h1>
-    <p class="subtitle">Describe your health issue below</p>
-
-    <div class="chat-box">
-        {% if user_input %}
-            <div class="message user">
-                {{ user_input }}
-            </div>
-
-            <div class="message bot">
-                {{ bot_reply }}
-            </div>
-        {% else %}
-            <div class="message bot">
-                Hello 👋 I’m your healthcare assistant. How can I help you today?
-            </div>
-        {% endif %}
-    </div>
-
-    <form class="form" method="post">
-        <input type="text" name="message" placeholder="Enter your health issue" required>
+    <form method="post">
+        <input type="text" name="message" placeholder="Describe your symptoms..." required>
         <button type="submit">Send</button>
     </form>
 
-    <div class="footer">
+    {% if user_input %}
+    <div class="chat">
+        <div class="user-msg"><b>You:</b> {{ user_input }}</div>
+        <div class="bot-msg"><b>Dr. Kunia:</b> {{ bot_reply }}</div>
+        <div class="footer">
         ⚕️ This chatbot provides basic guidance. Consult a doctor for emergencies.
     </div>
+    </div>
+    {% endif %}
 </div>
 
 </body>
