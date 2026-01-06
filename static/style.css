@@ -1,0 +1,25 @@
+body {
+    font-family: Arial;
+    background-color: #f4f4f4;
+    text-align: center;
+    padding: 40px;
+}
+
+input {
+    width: 300px;
+    padding: 10px;
+}
+
+button {
+    padding: 10px 15px;
+    background-color: green;
+    color: white;
+    border: none;
+}
+
+.chat {
+    margin-top: 20px;
+    background: white;
+    padding: 15px;
+    display: inline-block;
+}
