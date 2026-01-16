@@ -7,17 +7,18 @@ app = Flask(__name__)
 def index():
     user_input = ""
     bot_reply = ""
+    age_group = "adult"
 
     if request.method == "POST":
         user_input = request.form["message"]
         age_group = request.form.get("age", "adult")
-
         bot_reply = chatbot_response(user_input, age_group)
 
     return render_template(
         "index.html",
         user_input=user_input,
-        bot_reply=bot_reply
+        bot_reply=bot_reply,
+        age_group=age_group
     )
 
 if __name__ == "__main__":

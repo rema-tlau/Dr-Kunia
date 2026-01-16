@@ -11,21 +11,22 @@
 
 <form method="post">
 
-    <!-- AGE SELECTION -->
     <div class="age-selector">
         <span>Select Age Group:</span>
 
-        <input type="radio" id="child" name="age" value="child">
+        <input type="radio" id="child" name="age" value="child"
+               {% if age_group=="child" %}checked{% endif %}>
         <label for="child">👶 Child</label>
 
-        <input type="radio" id="adult" name="age" value="adult" checked>
+        <input type="radio" id="adult" name="age" value="adult"
+               {% if age_group=="adult" %}checked{% endif %}>
         <label for="adult">🧑 Adult</label>
 
-        <input type="radio" id="elderly" name="age" value="elderly">
+        <input type="radio" id="elderly" name="age" value="elderly"
+               {% if age_group=="elderly" %}checked{% endif %}>
         <label for="elderly">👴 Elderly</label>
     </div>
 
-    <!-- INPUT -->
     <div class="input-area">
         <input type="text" name="message" placeholder="Enter your health issue" required>
         <button type="submit">Send</button>
@@ -36,11 +37,13 @@
 {% if user_input %}
 <div class="chat-box">
     <div class="user-msg">{{ user_input }}</div>
-    <div class="bot-msg">{{ bot_reply }}</div> 
+    <div class="bot-msg">{{ bot_reply }}</div>
 </div>
 {% endif %}
 
-<p class="disclaimer">⚕ This chatbot provides basic guidance. Consult a doctor for emergencies.</p>
+<p class="disclaimer">
+⚕ This chatbot provides basic guidance. Consult a doctor for emergencies.
+</p>
 
 </body>
 </html>
