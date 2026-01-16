@@ -6,6 +6,8 @@
 </head>
 <body>
 
+<div class="container">
+
 <h2>AI-Based Healthcare Assistance Chatbot</h2>
 <p class="subtitle">Describe your health issue below</p>
 
@@ -15,17 +17,16 @@
         <span>Select Age Group:</span>
 
         <input type="radio" id="child" name="age" value="child" required
-        {% if age_group=="child" %}checked{% endif %}>
+               {% if age_group=="child" %}checked{% endif %}>
         <label for="child">👶 Child</label>
 
         <input type="radio" id="adult" name="age" value="adult"
-       {% if age_group=="adult" %}checked{% endif %}>
+               {% if age_group=="adult" %}checked{% endif %}>
         <label for="adult">🧑 Adult</label>
 
         <input type="radio" id="elderly" name="age" value="elderly"
-       {% if age_group=="elderly" %}checked{% endif %}>
+               {% if age_group=="elderly" %}checked{% endif %}>
         <label for="elderly">👴 Elderly</label>
-
     </div>
 
     <div class="input-area">
@@ -45,6 +46,8 @@
 <p class="disclaimer">
 ⚕ This chatbot provides basic guidance. Consult a doctor for emergencies.
 </p>
+
+</div>
 
 </body>
 </html>
