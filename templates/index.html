@@ -1,29 +1,46 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
     <title>Healthcare Chatbot</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="/static/style.css">
 </head>
 <body>
-    <div class="container">
-    <h2>AI-Based Healthcare Assistant</h2>
 
-    <form method="post">
-        <input type="text" name="message" placeholder="Describe your symptoms..." required>
+<h2>AI-Based Healthcare Assistance Chatbot</h2>
+<p class="subtitle">Describe your health issue below</p>
+
+<form method="post">
+
+    <!-- AGE SELECTION -->
+    <div class="age-selector">
+        <span>Select Age Group:</span>
+
+        <input type="radio" id="child" name="age" value="child">
+        <label for="child">👶 Child</label>
+
+        <input type="radio" id="adult" name="age" value="adult" checked>
+        <label for="adult">🧑 Adult</label>
+
+        <input type="radio" id="elderly" name="age" value="elderly">
+        <label for="elderly">👴 Elderly</label>
+    </div>
+
+    <!-- INPUT -->
+    <div class="input-area">
+        <input type="text" name="message" placeholder="Enter your health issue" required>
         <button type="submit">Send</button>
-    </form>
+    </div>
 
-    {% if user_input %}
-    <div class="chat">
-        <div class="user-msg"><b>You:</b> {{ user_input }}</div>
-        <div class="bot-msg"><b>Dr. Kunia:</b> {{ bot_reply }}</div>
-        <div class="footer">
-        ⚕️ This chatbot provides basic guidance. Consult a doctor for emergencies.
-    </div>
-    </div>
-    {% endif %}
+</form>
+
+{% if user_input %}
+<div class="chat-box">
+    <div class="user-msg">{{ user_input }}</div>
+    <div class="bot-msg">{{ bot_reply }}</div> 
 </div>
+{% endif %}
+
+<p class="disclaimer">⚕ This chatbot provides basic guidance. Consult a doctor for emergencies.</p>
 
 </body>
 </html>

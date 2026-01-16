@@ -1,13 +1,17 @@
 import re
+
+# --------------------
+# INTENTS (UNCHANGED – MANY INTENTS)
+# --------------------
 intents = {
     # Basic conversation
-    "greeting": ["hello", "hey", "good morning","hi", "good evening"],
+    "greeting": ["hello", "hey", "good morning", "hi", "good evening"],
     "goodbye": ["bye", "exit", "quit", "thank you"],
 
     # General symptoms
     "fever": ["fever", "high temperature"],
     "cold": ["cold", "cough", "sneeze", "runny nose"],
-    "headache": ["headache", "migraine"],
+    "headache": ["headache", "migraine", "head pain"],
     "body_pain": ["body pain", "body ache", "muscle pain"],
     "fatigue": ["tired", "fatigue", "weakness"],
 
@@ -58,55 +62,78 @@ intents = {
     "emergency": ["chest pain", "severe bleeding", "unconscious"]
 }
 
+# --------------------
+# RESPONSES (AGE BASED)
+# --------------------
 responses = {
-    "greeting": "Hello! How can I assist you with your health today?",
-    "goodbye": "Take care! Stay healthy.",
 
-    "fever": "Fever detected. Drink fluids and consult a doctor if it persists.",
-    "cold": "Cold symptoms detected. Take rest and drink warm fluids.",
-    "headache": "Headache may be due to stress or dehydration. Rest is advised.",
-    "body_pain": "Body pain detected. Take rest and avoid strenuous activity.",
-    "fatigue": "Fatigue may be due to lack of sleep or stress. Proper rest is recommended.",
+    "greeting": {
+        "child": "Hello! How can I help you today?",
+        "adult": "Hello! How can I assist you with your health today?",
+        "elderly": "Hello! Please tell me your health concern."
+    },
 
-    "stomach_pain": "Stomach pain detected. Avoid spicy food and drink warm water.",
-    "vomiting": "Vomiting detected. Take small sips of water and rest.",
-    "diarrhea": "Diarrhea detected. Drink ORS and stay hydrated.",
-    "constipation": "Constipation detected. Increase fiber intake and drink water.",
-    "indigestion": "Indigestion detected. Avoid oily food and eat light meals.",
+    "goodbye": {
+        "child": "Take care!",
+        "adult": "Take care! Stay healthy.",
+        "elderly": "Wishing you good health."
+    },
 
-    "breathing_problem": "Breathing difficulty detected. Please consult a doctor immediately.",
-    "asthma": "Asthma symptoms detected. Use prescribed inhaler and consult a doctor.",
-    "sore_throat": "Sore throat detected. Gargle with warm salt water.",
+    "fever": {
+        "child": "Monitor temperature and give plenty of fluids. Consult a pediatrician if fever persists.",
+        "adult": "Drink fluids and rest. Consult a doctor if fever continues.",
+        "elderly": "Fever in elderly can be serious. Seek medical advice promptly."
+    },
 
-    "back_pain": "Back pain detected. Maintain proper posture and avoid heavy lifting.",
-    "joint_pain": "Joint pain detected. Avoid strain and consult a doctor if severe.",
-    "toothache": "Toothache detected. Rinse with warm salt water and consult a dentist.",
-    "ear_pain": "Ear pain detected. Avoid inserting objects and consult a doctor.",
+    "headache": {
+        "child": "Ensure hydration and rest. Reduce screen time.",
+        "adult": "Headache may be due to stress or dehydration. Rest is advised.",
+        "elderly": "Monitor blood pressure and consult a doctor if headache persists."
+    },
 
-    "skin_problem": "Skin allergy detected. Avoid scratching and consult a dermatologist.",
-    "eye_problem": "Eye irritation detected. Avoid rubbing eyes and rest them.",
+    "body_pain": {
+        "child": "Body pain may be due to activity. Rest is advised.",
+        "adult": "Take rest and avoid strenuous activity.",
+        "elderly": "Body pain may be joint-related. Medical consultation recommended."
+    },
 
-    "stress": "Stress detected. Practice relaxation techniques and take breaks.",
-    "sleep_problem": "Sleep problem detected. Maintain a regular sleep schedule.",
-    "depression": "Mental health concern detected. Please consider professional help.",
+    "stomach_pain": {
+        "child": "Avoid junk food and give light meals.",
+        "adult": "Avoid spicy food and drink warm water.",
+        "elderly": "Stomach pain should be evaluated by a doctor."
+    },
 
-    "diabetes": "High blood sugar detected. Maintain diet and consult a doctor.",
-    "blood_pressure": "Blood pressure issue detected. Monitor BP regularly.",
-    "cholesterol": "Cholesterol concern detected. Follow a healthy diet.",
+    "breathing_problem": {
+        "child": "Seek immediate medical attention.",
+        "adult": "Please consult a doctor immediately.",
+        "elderly": "Emergency symptoms detected. Get medical help urgently."
+    },
 
-    "menstrual_pain": "Menstrual pain detected. Rest and warm compress may help.",
-    "pregnancy": "Pregnancy related query detected. Please consult a healthcare professional.",
+    "diabetes": {
+        "child": "Blood sugar issues in children require medical supervision.",
+        "adult": "Maintain diet and monitor sugar levels.",
+        "elderly": "Regular sugar monitoring and doctor consultation required."
+    },
 
-    "covid": "COVID symptoms suspected. Isolate yourself and get tested.",
-    "flu": "Flu symptoms detected. Take rest and stay hydrated.",
-    "food_poisoning": "Food poisoning suspected. Drink fluids and consult a doctor.",
+    "blood_pressure": {
+        "child": "BP issues in children need medical evaluation.",
+        "adult": "Monitor BP and reduce stress.",
+        "elderly": "Strict BP monitoring and regular checkups needed."
+    },
 
-    "injury": "Minor injury detected. Clean the wound and apply first aid.",
-    "burn": "Burn injury detected. Cool the area with running water.",
-    "emergency": "This is a medical emergency. Please contact emergency services immediately.",
+    "emergency": {
+        "child": "This is an emergency. Contact medical services immediately.",
+        "adult": "Medical emergency detected. Call emergency services.",
+        "elderly": "Emergency detected. Seek immediate medical help."
+    },
 
-    "default": "Sorry, I couldn't understand. Please consult a medical professional."
+    "default": {
+        "child": "Please consult a pediatrician.",
+        "adult": "Please consult a medical professional.",
+        "elderly": "Medical consultation is strongly recommended."
+    }
 }
+
 # --------------------
 # TEXT NORMALIZATION
 # --------------------
@@ -124,12 +151,11 @@ def normalize(text):
     for k, v in replacements.items():
         text = text.replace(k, v)
 
-    # remove special characters
     text = re.sub(r"[^a-zA-Z\s]", "", text)
     return text
 
 # --------------------
-# INTENT PREDICTION
+# INTENT PREDICTION (UNCHANGED)
 # --------------------
 def predict_intent(user_input):
     user_input = normalize(user_input)
@@ -143,11 +169,9 @@ def predict_intent(user_input):
         for keyword in keywords:
             keyword_words = keyword.split()
 
-            # Full phrase match
             if keyword in user_input:
                 score += 3
 
-            # Partial word match
             for w in keyword_words:
                 if w in words:
                     score += 1
@@ -159,8 +183,9 @@ def predict_intent(user_input):
     return best_match if best_match else "default"
 
 # --------------------
-# CHATBOT RESPONSE
+# CHATBOT RESPONSE (AGE BASED)
 # --------------------
-def chatbot_response(user_input):
+def chatbot_response(user_input, age_group="adult"):
     intent = predict_intent(user_input)
-    return responses.get(intent, responses["default"])
+    intent_responses = responses.get(intent, responses["default"])
+    return intent_responses.get(age_group, intent_responses["adult"])
