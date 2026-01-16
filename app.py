@@ -10,7 +10,6 @@ def index():
     age_group = "adult"
 
     if request.method == "POST":
-        print(request.form)
         user_input = request.form["message"]
         age_group = request.form.get("age", "adult")
         bot_reply = chatbot_response(user_input, age_group)
