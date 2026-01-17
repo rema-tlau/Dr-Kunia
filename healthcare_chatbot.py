@@ -71,6 +71,12 @@ responses = {
         "elderly": "Fever can be serious at this age. Seek medical advice promptly."
     },
 
+    "cold": {
+        "child": "Ensure warmth and fluids. Consult a doctor if symptoms worsen.",
+        "adult": "Rest and drink warm fluids. Avoid cold food.",
+        "elderly": "Cold symptoms should be monitored closely. Seek medical advice if persistent."
+    },
+
     "headache": {
         "child": "Ensure rest and hydration. Reduce screen time.",
         "adult": "Headache may be due to stress or dehydration. Rest is advised.",
@@ -83,16 +89,76 @@ responses = {
         "elderly": "Body pain may be joint-related. Medical consultation recommended."
     },
 
+    "fatigue": {
+        "child": "Ensure proper sleep and nutrition.",
+        "adult": "Fatigue may be due to stress or lack of sleep. Rest well.",
+        "elderly": "Persistent fatigue should be evaluated by a doctor."
+    },
+
     "stomach_pain": {
         "child": "Avoid junk food. Give light meals.",
         "adult": "Avoid spicy food and drink warm water.",
         "elderly": "Stomach pain should be evaluated by a doctor."
     },
 
+    "vomiting": {
+        "child": "Give small sips of fluids. Consult a doctor if vomiting continues.",
+        "adult": "Stay hydrated and rest. Avoid solid food temporarily.",
+        "elderly": "Vomiting can cause dehydration. Seek medical advice."
+    },
+
+    "diarrhea": {
+        "child": "Ensure oral rehydration solution (ORS). Consult a pediatrician.",
+        "adult": "Drink fluids and avoid oily food.",
+        "elderly": "Diarrhea can be dangerous. Immediate medical attention advised."
+    },
+
+    "constipation": {
+        "child": "Increase fiber intake and fluids.",
+        "adult": "Eat fiber-rich food and drink water.",
+        "elderly": "Chronic constipation should be medically evaluated."
+    },
+
     "breathing_problem": {
         "child": "Seek immediate medical attention.",
         "adult": "Please consult a doctor immediately.",
         "elderly": "Emergency symptoms detected. Get help urgently."
+    },
+
+    "asthma": {
+        "child": "Use prescribed inhaler and consult a pediatrician.",
+        "adult": "Avoid triggers and use medication as prescribed.",
+        "elderly": "Asthma symptoms should be closely monitored by a doctor."
+    },
+
+    "sore_throat": {
+        "child": "Give warm fluids and rest.",
+        "adult": "Gargle with warm salt water and rest.",
+        "elderly": "Persistent sore throat should be checked by a doctor."
+    },
+
+    "back_pain": {
+        "child": "Ensure correct posture and rest.",
+        "adult": "Avoid heavy lifting and take rest.",
+        "elderly": "Back pain may be due to spine issues. Medical consultation advised."
+    },
+
+    "joint_pain": {
+        "child": "Joint pain in children should be evaluated by a doctor.",
+        "adult": "Rest joints and avoid strain.",
+        "elderly": "Joint pain may be arthritis-related. Consult an orthopedic doctor."
+    },
+
+    "toothache": {
+        "child": "Consult a dentist as soon as possible.",
+        "adult": "Avoid cold food and visit a dentist.",
+        "elderly": "Dental pain should be treated promptly."
+    },
+    
+    "ear_pain": {
+        "child": "Do not insert anything in ear. Consult a doctor.",
+        "adult": "Avoid water entry and seek medical advice.",
+        "elderly": "Ear pain should be evaluated to prevent complications."
     },
 
     "diabetes": {
