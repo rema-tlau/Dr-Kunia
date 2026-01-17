@@ -22,6 +22,10 @@ intents = {
     "asthma": ["asthma", "wheezing"],
     "sore_throat": ["sore throat", "throat pain"],
 
+    "nerve_pain": ["nerve pain", "tingling", "numbness", "pins and needles", "burning sensation"],
+
+    "sciatica": ["sciatica", "leg pain from back", "shooting leg pain", "pain radiating to leg", "lower back to leg pain"],
+
     "back_pain": ["back pain", "lower back pain"],
     "joint_pain": ["joint pain", "knee pain"],
     "toothache": ["toothache", "dental pain"],
@@ -136,6 +140,18 @@ responses = {
         "adult": "Gargle with warm salt water and rest.",
         "elderly": "Persistent sore throat should be checked by a doctor."
     },
+    "nerve_pain": {
+        "child": "Nerve pain in children should be evaluated by a doctor.",
+        "adult": "Nerve pain may be due to posture or strain. Rest and consult a doctor if persistent.",
+        "elderly": "Nerve pain may be related to nerve damage or diabetes. Medical consultation is advised."
+    },
+
+    "sciatica": {
+        "child": "Sciatica-like pain in children requires immediate medical evaluation.",
+        "adult": "Sciatica may be due to disc or nerve compression. Avoid heavy lifting and consult a doctor.",
+        "elderly": "Sciatica is common in elderly due to spine issues. Physiotherapy and medical care are recommended."
+    },
+
 
     "back_pain": {
         "child": "Ensure correct posture and rest.",
@@ -154,7 +170,7 @@ responses = {
         "adult": "Avoid cold food and visit a dentist.",
         "elderly": "Dental pain should be treated promptly."
     },
-    
+
     "ear_pain": {
         "child": "Do not insert anything in ear. Consult a doctor.",
         "adult": "Avoid water entry and seek medical advice.",
