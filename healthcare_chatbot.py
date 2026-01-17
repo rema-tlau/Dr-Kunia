@@ -43,14 +43,15 @@ intents = {
 INTENT_PRIORITY = [
     "emergency",
     "breathing_problem",
+    "sciatica",
+    "nerve_pain",
     "headache",
     "stomach_pain",
     "back_pain",
     "joint_pain",
-    "toothache",
-    "ear_pain",
     "body_pain"
 ]
+
 
 # --------------------
 # RESPONSES (AGE BASED)
